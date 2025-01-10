@@ -6,16 +6,19 @@ import loadingImage from './assets/loading.png'; // Import the image
 
 function App() {
   const [input, setInput] = useState('');
-  const [result, setResult] = useState<RecipeType | MenuSuggestions | null>({
+  const initData: MenuSuggestions = {
     recommend: ['宫保鸡丁', '鱼香肉丝', '天气冷，吃点什么好？', '心情抑郁，吃点什么好？', '手脚酸疼，吃点什么好？'],
     reason: '你可以输入任何问题，或者任何描述，我都会给你推荐一个菜谱',
-  });
+  };
+  const [result, setResult] = useState<RecipeType | MenuSuggestions | null>(initData);
+  const [history, setHistory] = useState<RecipeType | MenuSuggestions | null>(initData);
   const [loading, setLoading] = useState(false); // Add loading state
 
   const handleSearch = async (event?: React.MouseEvent<HTMLButtonElement>, newInput?: string) => {
     const str = newInput || input;
     if (str.trim() && !loading) {
       setLoading(true);
+      setHistory(result);
       const searchResult = await getRecipeOrSuggestions(str);
       setResult(searchResult);
       setLoading(false);
@@ -94,6 +97,10 @@ function App() {
     );
   };
 
+  const handleBack = () => {
+    setResult(history);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-3xl mx-auto">
@@ -125,6 +132,12 @@ function App() {
           </button>
         </div>
 
+        <button
+          onClick={() => handleBack()} // Use the browser's back function
+          className="absolute top-1 left-0 mt-4 ml-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+        >
+          返回
+        </button>
         {renderResult()}
       </div>
     </div>
