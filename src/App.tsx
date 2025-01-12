@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
 import { RecipeType, MenuSuggestions } from './types';
 import { getRecipeOrSuggestions } from './recipeData';
 import loadingImage from './assets/loading.png'; // Import the image
+import shareIcon from './assets/share.png';
 
 function App() {
   const [input, setInput] = useState('');
@@ -25,9 +26,24 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const inputParam = params.get('input');
+    if (inputParam) {
+      setInput(inputParam);
+      handleSearch(undefined, inputParam);
+    }
+  }, []);
+
   const handleInputChange = (dish: string) => {
     setInput(dish);
     handleSearch(undefined, dish);
+  };
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(`https://cook.aries-happy.com?input=${encodeURIComponent(input)}`);
+    // 弹窗提示
+    alert('已复制到剪贴板');
   };
 
   const renderResult = () => {
@@ -58,7 +74,15 @@ function App() {
 
     return (
       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6">{(result as RecipeType).name}</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center">
+          {(result as RecipeType).name}
+          <button
+            onClick={handleShare}
+            className="ml-2 px-2 py-1 text-white rounded transition-colors"
+          >
+            <img src={shareIcon} alt="分享" className="w-4 h-4" />
+          </button>
+        </h2>
 
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">食材</h3>
