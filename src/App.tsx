@@ -119,7 +119,8 @@ function App() {
           </div>
           <button
             onClick={handleSearch}
-            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2"
+            style={{ backgroundColor: '#388E3C', color: '#fff' }}
+            className="px-6 py-3 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2"
           >
             {loading ? (
               <img src={loadingImage} alt="Loading" className="animate-spin" width={20} height={20} />
