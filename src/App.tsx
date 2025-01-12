@@ -119,7 +119,7 @@ function App() {
           </div>
           <button
             onClick={handleSearch}
-            style={{ backgroundColor: '#388E3C', color: '#fff' }}
+            style={{ backgroundColor: '#2E7D32', color: '#fff' }}
             className="px-6 py-3 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2"
           >
             {loading ? (
