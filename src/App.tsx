@@ -9,7 +9,7 @@ function App() {
   const [input, setInput] = useState('');
   const initData: MenuSuggestions = {
     recommend: ['宫保鸡丁', '鱼香肉丝', '天气冷，吃点什么好？', '心情抑郁，吃点什么好？', '手脚酸疼，吃点什么好？'],
-    reason: '你可以输入任何问题，或者任何描述，我都会给你推荐一个菜单或者菜谱',
+    reason: '你可以输入任何问题，或者任何描述，我都会给你推荐一个食谱或者菜单',
   };
   const [result, setResult] = useState<RecipeType | MenuSuggestions | null>(initData);
   const [history, setHistory] = useState<RecipeType | MenuSuggestions | null>(initData);
@@ -52,7 +52,7 @@ function App() {
     if (Array.isArray((result as MenuSuggestions).recommend)) {
       return (
         <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">推荐菜单</h2>
+          <h2 className="text-xl font-semibold mb-4">推荐食谱</h2>
           <ul className="grid grid-cols-2 gap-4">
             {(result as MenuSuggestions).recommend.map((dish, index) => (
               <li
@@ -128,7 +128,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">智能菜单助手</h1>
+        <h1 className="text-3xl font-bold text-center mb-8">智能食谱助手</h1>
 
         <div className="flex gap-2">
           <div className="flex-1 relative">
