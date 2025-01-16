@@ -27,11 +27,13 @@ function App() {
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const inputParam = params.get('input');
+    // 修改：从路径中获取参数而不是查询参数
+    const path = window.location.pathname;
+    const inputParam = path.substring(1); // 移除开头的 '/'
     if (inputParam) {
-      setInput(inputParam);
-      handleSearch(undefined, inputParam);
+      const decodedInput = decodeURIComponent(inputParam);
+      setInput(decodedInput);
+      handleSearch(undefined, decodedInput);
     }
   }, []);
 
@@ -41,8 +43,8 @@ function App() {
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText(`https://cook.aries-happy.com?input=${encodeURIComponent(input)}`);
-    // 弹窗提示
+    // 修改：使用路径而不是查询参数
+    navigator.clipboard.writeText(`https://cook.aries-happy.com/${encodeURIComponent(input)}`);
     alert('已复制到剪贴板');
   };
 
