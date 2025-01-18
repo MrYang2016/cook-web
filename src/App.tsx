@@ -16,7 +16,7 @@ function App() {
   const [history, setHistory] = useState<RecipeType | MenuSuggestions | null>(initData);
   const [loading, setLoading] = useState(false); // Add loading state
 
-  const handleSearch = async (event?: React.MouseEvent<HTMLButtonElement>, newInput?: string) => {
+  const handleLinkSearch = async (event?: React.MouseEvent<HTMLButtonElement>, newInput?: string) => {
     const str = newInput || input;
     if (str.trim() && !loading) {
       setLoading(true);
@@ -34,6 +34,14 @@ function App() {
     }
   };
 
+  const handleSearch = async (event?: React.MouseEvent<HTMLButtonElement>, newInput?: string) => {
+    const str = newInput || input;
+    if (str.trim()) {
+      // 跳转页面
+      window.location.href = `https://cook.aries-happy.com/${encodeURIComponent(str)}`;
+    }
+  };
+
   useEffect(() => {
     // 修改：从路径中获取参数而不是查询参数
     const path = window.location.pathname;
@@ -41,14 +49,9 @@ function App() {
     if (inputParam) {
       const decodedInput = decodeURIComponent(inputParam);
       setInput(decodedInput);
-      handleSearch(undefined, decodedInput);
+      handleLinkSearch(undefined, decodedInput);
     }
   }, []);
-
-  const handleInputChange = (dish: string) => {
-    setInput(dish);
-    handleSearch(undefined, dish);
-  };
 
   const handleShare = () => {
     // 修改：使用路径而不是查询参数
@@ -138,10 +141,6 @@ function App() {
     );
   };
 
-  const handleBack = () => {
-    setResult(history);
-  };
-
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-3xl mx-auto">
@@ -173,13 +172,6 @@ function App() {
             )}
           </button>
         </div>
-
-        <button
-          onClick={() => handleBack()} // Use the browser's back function
-          className="absolute top-1 left-0 mt-4 ml-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
-        >
-          返回
-        </button>
         {renderResult()}
       </div>
     </div>
