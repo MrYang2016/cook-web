@@ -68,9 +68,16 @@ function App() {
               <li
                 key={index}
                 className="p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer transition-colors"
-                onClick={() => handleInputChange(dish)}
               >
-                {dish}
+                <a
+                  href={`https://cook.aries-happy.com/${encodeURIComponent(dish)}`}
+                  className="block w-full h-full"
+                  title={`${dish}的详细菜谱`}  // 添加标题属性
+                  rel="noopener"  // 添加安全属性
+                  aria-label={`查看${dish}的完整食谱和烹饪步骤`}  // 添加无障碍标签
+                >
+                  {dish}
+                </a>
               </li>
             ))}
           </ul>
