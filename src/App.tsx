@@ -21,6 +21,13 @@ function App() {
       setLoading(true);
       setHistory(result);
       const searchResult = await getRecipeOrSuggestions(str);
+      if (searchResult && 'name' in searchResult && searchResult.name) {
+        // 修改header里面的title
+        document.title = searchResult.name;
+      }
+      if (searchResult && 'description' in searchResult && searchResult.description) {
+        document.querySelector('meta[name="description"]')?.setAttribute('content', searchResult.description);
+      }
       setResult(searchResult);
       setLoading(false);
     }
