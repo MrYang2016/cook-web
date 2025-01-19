@@ -21,13 +21,25 @@ function App() {
     if (str.trim() && !loading) {
       setLoading(true);
       const searchResult = await getRecipeOrSuggestions(str);
+      // og:url
+      document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://cook.aries-happy.com/${encodeURIComponent(str)}`);
+      // twitter:url
+      document.querySelector('meta[name="twitter:url"]')?.setAttribute('content', `https://cook.aries-happy.com/${encodeURIComponent(str)}`);
       if (searchResult && 'name' in searchResult && searchResult.name) {
         // 修改header里面的title
         document.title = `${searchResult.name}_菜谱`;
+        // og:title
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${searchResult.name}_菜谱`);
+        // twitter:title
+        document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', `${searchResult.name}_菜谱`);
         setTitle(searchResult.name);
       }
       if (searchResult && 'description' in searchResult && searchResult.description) {
         document.querySelector('meta[name="description"]')?.setAttribute('content', searchResult.description);
+        // og:description
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', searchResult.description);
+        // twitter:description
+        document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', searchResult.description);
       }
       // canonical
       document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://cook.aries-happy.com/${encodeURIComponent(str)}`);
