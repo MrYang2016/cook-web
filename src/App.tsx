@@ -13,7 +13,6 @@ function App() {
     reason: '你可以输入任何问题，或者任何描述，我都会给你推荐一个食谱或者菜单',
   };
   const [result, setResult] = useState<RecipeType | MenuSuggestions | null>(initData);
-  const [history, setHistory] = useState<RecipeType | MenuSuggestions | null>(initData);
   const [loading, setLoading] = useState(false); // Add loading state
   const [title, setTitle] = useState('智能食谱助手');
 
@@ -21,7 +20,6 @@ function App() {
     const str = newInput || input;
     if (str.trim() && !loading) {
       setLoading(true);
-      setHistory(result);
       const searchResult = await getRecipeOrSuggestions(str);
       if (searchResult && 'name' in searchResult && searchResult.name) {
         // 修改header里面的title
@@ -31,6 +29,8 @@ function App() {
       if (searchResult && 'description' in searchResult && searchResult.description) {
         document.querySelector('meta[name="description"]')?.setAttribute('content', searchResult.description);
       }
+      // canonical
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://cook.aries-happy.com/${encodeURIComponent(str)}`);
       setResult(searchResult);
       setLoading(false);
     }
