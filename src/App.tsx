@@ -25,7 +25,7 @@ function App() {
       const searchResult = await getRecipeOrSuggestions(str);
       if (searchResult && 'name' in searchResult && searchResult.name) {
         // 修改header里面的title
-        document.title = searchResult.name;
+        document.title = `${searchResult.name}_菜谱`;
         setTitle(searchResult.name);
       }
       if (searchResult && 'description' in searchResult && searchResult.description) {
