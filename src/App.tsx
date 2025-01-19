@@ -15,6 +15,7 @@ function App() {
   const [result, setResult] = useState<RecipeType | MenuSuggestions | null>(initData);
   const [history, setHistory] = useState<RecipeType | MenuSuggestions | null>(initData);
   const [loading, setLoading] = useState(false); // Add loading state
+  const [title, setTitle] = useState('智能食谱助手');
 
   const handleLinkSearch = async (event?: React.MouseEvent<HTMLButtonElement>, newInput?: string) => {
     const str = newInput || input;
@@ -24,7 +25,8 @@ function App() {
       const searchResult = await getRecipeOrSuggestions(str);
       if (searchResult && 'name' in searchResult && searchResult.name) {
         // 修改header里面的title
-        document.title = `${searchResult.name}_菜谱_智能食谱助手`;
+        document.title = searchResult.name;
+        setTitle(searchResult.name);
       }
       if (searchResult && 'description' in searchResult && searchResult.description) {
         document.querySelector('meta[name="description"]')?.setAttribute('content', searchResult.description);
@@ -95,7 +97,7 @@ function App() {
     return (
       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 flex items-center">
-          {(result as RecipeType).name}
+          {(result as RecipeType).name}的制作教程
           <button
             onClick={handleShare}
             className="ml-2 px-2 py-1 text-white rounded transition-colors"
@@ -144,7 +146,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">智能食谱助手</h1>
+        <h1 className="text-3xl font-bold text-center mb-8">{title}</h1>
 
         <div className="flex gap-2">
           <div className="flex-1 relative">
