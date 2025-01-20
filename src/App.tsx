@@ -153,7 +153,7 @@ function App() {
         </div>
 
         {/* suggestions a tag */}
-        {(result as RecipeType).suggestions.length > 0 && (
+        {/* {(result as RecipeType).suggestions.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold mb-3">相关推荐</h3>
             <ul className="list-disc list-inside space-y-2">
@@ -172,7 +172,7 @@ function App() {
             ))}
             </ul>
           </div>
-        )}
+        )} */}
       </div>
     );
   };
