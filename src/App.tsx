@@ -143,7 +143,7 @@ function App() {
           </div>
         </div>
 
-        <div>
+        <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">小贴士</h3>
           <ul className="list-disc list-inside space-y-2">
             {(result as RecipeType).tips.map((tip, index) => (
