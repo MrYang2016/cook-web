@@ -173,6 +173,13 @@ function App() {
             </ul>
           </div>
         )}
+
+        <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-lg font-semibold mb-3">相关网站</h3>
+          <ul className="list-disc list-inside space-y-2">
+            <li><a href={`https://www.xiachufang.com/search/?keyword=${encodeURIComponent(input)}`} className="text-blue-500 hover:underline">下厨房</a></li>
+          </ul>
+        </div>
       </div>
     );
   };
