@@ -161,10 +161,10 @@ function App() {
                 <li key={index} className="p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer transition-colors">
                   <a
                     href={`https://cook.aries-happy.com/${encodeURIComponent(suggestion)}`}
-                    className="text-blue-500 hover:underline"
-                    title={`${suggestion}的详细菜谱`}
-                    rel="noopener"
-                    aria-label={`查看${suggestion}的完整食谱和烹饪步骤`}
+                    className="block w-full h-full"
+                    title={`${suggestion}的详细菜谱`}  // 添加标题属性
+                    rel="noopener"  // 添加安全属性
+                    aria-label={`查看${suggestion}的完整食谱和烹饪步骤`}  // 添加无障碍标签
                   >
                     {suggestion}
                   </a>
