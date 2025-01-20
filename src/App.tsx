@@ -154,7 +154,7 @@ function App() {
 
         {/* suggestions a tag */}
         {(result as RecipeType).suggestions.length > 0 && (
-          <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+          <div className="mb-6">
             <h3 className="text-lg font-semibold mb-3">相关推荐</h3>
             <ul className="grid grid-cols-2 gap-4">
               {(result as RecipeType).suggestions.map((suggestion, index) => (
@@ -174,7 +174,7 @@ function App() {
           </div>
         )}
 
-        <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+        <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">相关网站</h3>
           <ul className="list-disc list-inside space-y-2">
             <li><a href={`https://www.xiachufang.com/search/?keyword=${encodeURIComponent(input)}`} className="text-blue-500 hover:underline">下厨房</a></li>
