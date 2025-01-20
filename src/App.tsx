@@ -151,6 +151,28 @@ function App() {
             ))}
           </ul>
         </div>
+
+        {/* suggestions a tag */}
+        {(result as RecipeType).suggestions.length > 0 && (
+          <div>
+            <h3 className="text-lg font-semibold mb-3">相关推荐</h3>
+            <ul className="list-disc list-inside space-y-2">
+              {(result as RecipeType).suggestions.map((suggestion, index) => (
+              <li key={index} className="text-gray-700">
+                <a 
+                  href={`https://cook.aries-happy.com/${encodeURIComponent(suggestion)}`} 
+                  className="text-blue-500 hover:underline"
+                  title={`${suggestion}的详细菜谱`}
+                  rel="noopener"
+                  aria-label={`查看${suggestion}的完整食谱和烹饪步骤`}
+                >
+                  {suggestion}
+                </a>
+              </li>
+            ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   };
