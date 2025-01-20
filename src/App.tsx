@@ -80,6 +80,10 @@ function App() {
       return (
         <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">推荐食谱</h2>
+          {/* reason */}
+          <div className="mt-4">
+            <p className="text-gray-600 mb-4">{(result as MenuSuggestions).reason}</p>
+          </div>
           <ul className="grid grid-cols-2 gap-4">
             {(result as MenuSuggestions).recommend.map((dish, index) => (
               <li
@@ -98,10 +102,6 @@ function App() {
               </li>
             ))}
           </ul>
-          {/* reason */}
-          <div className="mt-4">
-            <p className="text-gray-600 mb-4">{(result as MenuSuggestions).reason}</p>
-          </div>
         </div>
       );
     }
@@ -154,22 +154,22 @@ function App() {
 
         {/* suggestions a tag */}
         {(result as RecipeType).suggestions.length > 0 && (
-          <div>
+          <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-lg font-semibold mb-3">相关推荐</h3>
-            <ul className="list-disc list-inside space-y-2">
+            <ul className="grid grid-cols-2 gap-4">
               {(result as RecipeType).suggestions.map((suggestion, index) => (
-              <li key={index} className="text-gray-700">
-                <a 
-                  href={`https://cook.aries-happy.com/${encodeURIComponent(suggestion)}`} 
-                  className="text-blue-500 hover:underline"
-                  title={`${suggestion}的详细菜谱`}
-                  rel="noopener"
-                  aria-label={`查看${suggestion}的完整食谱和烹饪步骤`}
-                >
-                  {suggestion}
-                </a>
-              </li>
-            ))}
+                <li key={index} className="p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer transition-colors">
+                  <a
+                    href={`https://cook.aries-happy.com/${encodeURIComponent(suggestion)}`}
+                    className="text-blue-500 hover:underline"
+                    title={`${suggestion}的详细菜谱`}
+                    rel="noopener"
+                    aria-label={`查看${suggestion}的完整食谱和烹饪步骤`}
+                  >
+                    {suggestion}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         )}
