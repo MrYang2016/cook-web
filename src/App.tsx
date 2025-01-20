@@ -176,8 +176,16 @@ function App() {
 
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">相关网站</h3>
-          <ul className="list-disc list-inside space-y-2">
-            <li><a href={`https://www.xiachufang.com/search/?keyword=${encodeURIComponent(input)}`} className="text-blue-500 hover:underline">下厨房</a></li>
+          <ul className="grid grid-cols-2 gap-4">
+            <li className="p-3 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer transition-colors">
+              <a
+                href={`https://www.xiachufang.com/search/?keyword=${encodeURIComponent(input)}`}
+                className="block w-full h-full"
+                target="_blank"
+                rel="noopener"
+                aria-label={`查看${input}的详细菜谱`}
+              >下厨房</a>
+            </li>
           </ul>
         </div>
       </div>
